@@ -11,30 +11,34 @@ const props = defineProps({
     required: false,
   },
 
-currentTheme:{
-    type:String
-  }
 });
+const emit = defineEmits();
 
 const tableData = ref(props.items || []);
 const content = ref(null);
+console.log(tableData.value);
 
 const beforeEnter = (el) => {
   el.style.height = "0";
+  //  emit('accordion-height', el.scrollHeight);
 };
 
 const enter = (el) => {
   el.style.height = `${el.scrollHeight}px`;
+  emit('accordion-height', el.scrollHeight);
 };
 
 const beforeLeave = (el) => {
   el.style.height = `${el.scrollHeight}px`;
+  //  emit('accordion-height', el.scrollHeight);
 };
 
 const leave = (el) => {
   el.style.height = "0";
-};
+    emit('accordion-decrease', el.scrollHeight);
 
+  //  emit('accordion-height', 0);
+};
 
 const toggleOpen = (index) => {
   // Close all items
@@ -48,27 +52,25 @@ const toggleOpen = (index) => {
 
 </script>
 <template>
-  <div class="flex flex-col gap-y-1 md:gap-y-5 w-full ml-14 md:ml-20" v-if="tableData">
+  <div class="flex flex-col gap-y-4 w-full " v-if="tableData">
     <div
       v-for="(i, index) in tableData"
       :key="index"
       @click="toggleOpen(index)"
-      class="flex-col  items-center justify-start md:justify-between py-0 md:py-2 cursor-pointer  rounded-md duration-200"
+      class="flex-col  py-0 md:py-2 cursor-pointer  bg-gray-100 rounded-md duration-200"
     >
       <div
-        class="flex  items-center flex-row justify-start md:justify-between md:w-[50rem] w-[30rem]  capitalize text-gray-700"
+        class="flex  flex-row mt-5  justify-between capitalize  py-2 px-2 rounded-lg text-gray-700"
         >
-        <p :class="{'text-[#374151]':currentTheme==='light','text-white':currentTheme==='dark'}" class="capitalize ml-14 md:ml-36 text-sm md:text-base md:mr-10">
+        <p  class="capitalize  text-sm md:text-base ">
           {{ i?.title }}
         </p>
         <Icon
-           class="text-xl font-medium  cursor-pointer duration-200 ml-16 mr-14 md:mr-3 md:ml-0 shrink-0 "
+           class="text-xl font-medium  cursor-pointer duration-200  shrink-0 "
           :class="i?.open ? '' : 'transform rotate-180'"
            name="mingcute:up-fill"
-           :style="{ color: currentTheme === 'dark' ? 'white' : 'gray' }"
         />
       </div>
-      <div class="border border-slate-200 md:w-[40rem] mt-1 md:ml-36 md:mt-4"></div>
       <transition
         name="slide-fade"
         mode="out-in"
@@ -78,7 +80,7 @@ const toggleOpen = (index) => {
         @leave="leave"
          >
           <div v-show="i.open" class="overflow-y-auto" ref="content">
-          <div v-if="$slots.content" class="w-full md:w-[40rem]  text-start md:ml-36  px-20 md:px-1 ">
+          <div v-if="$slots.content" class="w-full m text-start  bg-gray-100  px-20 md:px-1 ">
             <slot name="content" :item="i" />
           </div>
           <div v-else>- - -</div>

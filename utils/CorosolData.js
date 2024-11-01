@@ -9,6 +9,8 @@ import per3 from "../assets/pers7.webp"
 import per4 from "../assets/pers8.webp"
 import per7 from "../assets/pers8.webp"
 import train from "../assets/trainer.webp"
+import mac1 from "../assets/maci.png"
+import mac2 from "../assets/maci2.jpeg"
 export const CorosolData1=[
     {
         id:1,
@@ -157,4 +159,64 @@ export const CorosolData2=[
 
 }
 
+]
+
+export const SmallCorosol=[
+    {
+        id:1,
+     img:per1,
+     name:"Mickael Sahlu",
+     title:"CTO"
+
+    },
+    {    id:2,
+        img:train,
+        name:"Endriyas Yeshidniber",
+        title:"Software Developer"
+   
+       },
+]
+
+export const MacDummy=[
+    {
+        id:1,
+        img:mac1,
+        company:"Minab IT Solutions PLC",
+        title:"Chief Technology Officer",
+        experiance:"12 Years of Experience",
+        desc:"Michael is a technical lead in one of the top software development firms in Ethiopia, Minab IT Solutions PLC. Michael manages software development teams, runs developer capacity building programs, and is an expert in web/cloud platforms development."
+
+    },
+    {
+        id:2,
+        img:mac2,
+        company:"HaHuJobs",
+        title:"Technical Manager",
+        experiance:"5 Years of Experience",
+        desc:"Michael leads the overall HaHuJobs technical direction of all deployed platforms. He leads both the front and back end development team, also directs the architectural choice, software development direction as well as technology choice."
+
+    },
+]
+
+export const MacDetail=[
+    {
+       id:1,
+       img:scree1,
+       head:"Introduction to Frontend Web Development",
+       ptag1:"Beginner Level",
+       ptag2:"24-30 Classes /3 Monthes",
+       ptag3:"this is Sahlu is one of the notable industry veterans with over a decade of technical experience as a full-stack software developer and entrepreneur as a co-founder and CTO of Minab IT Solutions PLC. Michael specializes in system architecture and web platform development.",
+
+
+    },
+    {
+        id:2,
+        img:scree1,
+        head:"Introduction to Frontend Web Development",
+        ptag1:"Beginner Level",
+        ptag2:"24-30 Classes /3 Monthes",
+        ptag3:"this is Sahlu is one of the notable industry veterans with over a decade of technical experience as a full-stack software developer and entrepreneur as a co-founder and CTO of Minab IT Solutions PLC. Michael specializes in system architecture and web platform development.",
+        
+ 
+     }
 ]

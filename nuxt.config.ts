@@ -5,8 +5,10 @@ export default defineNuxtConfig({
   modules: [
     '@nuxtjs/tailwindcss',
     '@nuxt/icon',
-    'vue3-carousel-nuxt'
+    'vue3-carousel-nuxt',
+    '@vee-validate/nuxt',
   ],
+  ssr:false,
    css:["../hahu_muya/assets/css/tailwind.css"],
   runtimeConfig:{
     public:{mode:import.meta.env.MODE}

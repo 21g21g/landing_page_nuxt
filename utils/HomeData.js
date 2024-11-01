@@ -128,3 +128,20 @@ export const NonPageData=[
 
 }
 ]
+
+export const classesData = [
+    {
+        id: 1,
+        classes: {
+            name: "weekdays",
+            shift: ["after", "cde"]
+        }
+    },
+    {
+        id: 2,
+        classes: {
+            name: "weekends",
+            shift: ["morning", "evening"]
+        }
+    },
+]

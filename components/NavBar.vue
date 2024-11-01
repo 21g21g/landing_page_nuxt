@@ -45,22 +45,32 @@ const handleDark=()=>{
 
 <template>
   <div>
-    <header class="flex flex-row justify-between h-[80px] items-center relative z-10">
+    <header class="flex flex-row gap-[25rem]  py-6 h-[80px] px-10 items-center relative z-10">
       <!-- Logo Section -->
-      <div class="flex flex-row gap-3 items-center">
+       <NuxtLink 
+         @click="hadleT" 
+          class="font-medium text-base"
+          :class="{'text-[#111827]': light === 'light', 'text-white': light === 'dark'}" 
+         :to="{ path: '/', hash: `#${props.id1}` }"
+             >
+           <div class="flex flex-row gap-3 items-center cursor-pointer">
+        
         <img 
           :src="brand" 
           alt="Brand logo" 
           class="lg:h-[3rem] lg:w-[4rem] h-[2rem] w-[2rem] object-cover"
         />
-        <h1 :class="{'text-[#111827] ':light==='light','text-white':light==='dark' }" class="gap-2 lg:text-3xl text-xl font-bold flex lg:flex-col xl:flex-row">
+        <h1 :class="{'text-[#111827] ':light==='light','text-white':light==='dark' }" 
+        class="gap-2 lg:text-3xl text-xl font-bold flex lg:flex-col xl:flex-row">
           HaHu <span class="text-[#009688]">Muya</span>
         </h1>
       </div>
 
+        </NuxtLink>
+     
      
         <nav 
-        class="lg:static absolute flex md:flex-row xs:z-50 transition-all gap-10 duration-300"
+        class="lg:static absolute flex md:flex-row xs:z-50 transition-all gap-12 duration-300"
         :class="{
           'w-full h-screen top-0 left-0 flex flex-col items-start justify-start px-4 py-5 gap-8':
             toggleController,
@@ -69,21 +79,71 @@ const handleDark=()=>{
           'top-[-100vh]': !toggleController
         }"
       >
-         <input v-if="toggleController" type="text" placeholder="Search" :class="{'bg-slate-800 border border-gray-100':light==='dark','bg-slate-300 border border-gray-100':light==='light'}" class=" py-5 w-full  rounded-md px-3"/>
-        <a @click="hadleT" :class="{'text-[#111827]': light === 'light', 'text-white': light === 'dark'}" class="font-medium text-lg" :href="`#${props.id1}`">Home</a>
-        <a @click="hadleT" :class="{'text-[#111827]': light === 'light', 'text-white': light === 'dark'}" class="font-medium text-lg" :href="`#${props.id2}`">Trainings</a>
-        <a @click="hadleT" :class="{'text-[#111827]': light === 'light', 'text-white': light === 'dark'}" class="font-medium text-lg" :href="`#${props.id3}`">Partners</a>
-        <a @click="hadleT" :class="{'text-[#111827]': light === 'light', 'text-white': light === 'dark'}" class="font-medium text-lg" :href="`#${props.id4}`">About</a>
-        <a @click="hadleT" :class="{'text-[#111827]': light === 'light', 'text-white': light === 'dark'}" class="font-medium text-lg" :href="`#${props.id5}`">What's In Muya</a>
-        <a @click="hadleT" :class="{'text-[#111827]': light === 'light', 'text-white': light === 'dark'}" class="font-medium text-lg" :href="`#${props.id6}`">Trainers</a>
-        <a @click="hadleT" :class="{'text-[#111827]': light === 'light', 'text-white': light === 'dark'}" class="font-medium text-lg" :href="`#${props.id7}`">FAQ</a>
+         <input v-if="toggleController" type="text" placeholder="Search" :class="{'bg-slate-800 border border-gray-100 ':light==='dark','bg-slate-300 border border-gray-100':light==='light'}" class=" py-5 w-full  rounded-md px-3"/>
+         <NuxtLink 
+         @click="hadleT" 
+          class="font-medium text-base"
+          :class="{'text-[#111827]': light === 'light', 'text-white': light === 'dark'}" 
+         :to="{ path: '/', hash: `#${props.id1}` }"
+             >
+          Home
+        </NuxtLink>
+       <NuxtLink 
+       @click="hadleT" 
+        class="font-medium text-base"
+  :class="{'text-[#111827]': light === 'light', 'text-white': light === 'dark'}" 
+  :to="{ path: '/', hash: `#${props.id2}` }"
+>
+  Trainings
+</NuxtLink>
+  <NuxtLink 
+  @click="hadleT" 
+  class="font-medium text-base"
+  :class="{'text-[#111827]': light === 'light', 'text-white': light === 'dark'}" 
+  :to="{ path: '/', hash: `#${props.id3}` }"
+>
+  Partners
+</NuxtLink>
+ <NuxtLink 
+  @click="hadleT" 
+  class="font-medium text-base"
+  :class="{'text-[#111827]': light === 'light', 'text-white': light === 'dark'}" 
+  :to="{ path: '/', hash: `#${props.id4}` }"
+>
+  About
+</NuxtLink>
+ <NuxtLink 
+  @click="hadleT" 
+  class="font-medium text-base"
+  :class="{'text-[#111827]': light === 'light', 'text-white': light === 'dark'}" 
+  :to="{ path: '/', hash: `#${props.id5}` }"
+>
+  What's In Muya
+</NuxtLink>
+ <NuxtLink 
+  @click="hadleT" 
+  class="font-medium text-base"
+  :class="{'text-[#111827]': light === 'light', 'text-white': light === 'dark'}" 
+  :to="{ path: '/', hash: `#${props.id6}` }"
+>
+ Trainers
+</NuxtLink>
+<NuxtLink 
+  @click="hadleT" 
+  class="font-medium text-base"
+  :class="{'text-[#111827]': light === 'light', 'text-white': light === 'dark'}" 
+  :to="{ path: '/', hash: `#${props.id7}` }"
+>
+ FAQ
+</NuxtLink>
+        
         
         <Icon 
           v-if="light === 'light'" 
           name="mynaui:sun" 
-          class="cursor-pointer order-first md:order-last" 
+          class="cursor-pointer order-first md:order-last self-center" 
           @click="handleClickDrop"
-          size="30"
+          size="15"
         />
         <Icon 
           v-else 
@@ -91,7 +151,7 @@ const handleDark=()=>{
           class="cursor-pointer order-first md:order-last" 
           @click="handleClickDrop" 
           style="color:white"
-          size="30"
+          size="15"
         />
 
         <div v-if="dropDown" class="absolute w-32 bg-white border border-zinc-400 md:right-0 md:top-14  top-9 rounded-lg">
@@ -115,7 +175,7 @@ const handleDark=()=>{
         <Icon 
           v-if="!toggleController" 
           class="text-gray-500 cursor-pointer" 
-          style="width: 40px; height: 50px;" 
+          size="20"
           name="akar-icons:three-line-horizontal"
         />
         <Icon 
