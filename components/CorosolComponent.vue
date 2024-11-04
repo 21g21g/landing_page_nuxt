@@ -2,7 +2,7 @@
 import {ref} from "vue"
 const borderController=ref(null)
 import { useRouter } from 'vue-router';
-
+import Courses from "../graphql/Courses.gql"
 const router = useRouter()
 const showDropdown = ref(null);
 
@@ -36,6 +36,8 @@ currentTheme:{
     type:String
   }    
 })
+const openRegisterModal = ref(false);
+
 console.log(props.itemToshow)
 const handleMoseOver=(id)=>{
     borderController.value=id
@@ -65,14 +67,24 @@ const detailPage=(id)=>{
  
 
 }
+const openModal=()=>{
+  openRegisterModal.value=true
+}
+//  <p v-html="slide.description" :class="{'mt-1 leading-7 text-base md:line-clamp-3 line-clamp-none':!othersValue,' text-[#4b5563]':currentTheme==='light','text-white':currentTheme==='dark'}" class="md:pl-5 pl-3  md:pr-3 pr-1  line-clamp-3 "></p>
 
 </script>
 
 
-       <template>
-   
-         <Carousel  :items-to-show="props.itemToshow"  class="mt-10  md:px-0   md:mx-0 mx-5 " 
-        :class="{
+<template>
+   <div>
+   <ModalRegisterModal
+      v-model="openRegisterModal" 
+      v-if="openRegisterModal"
+      :data="Courses"
+      wrapperClass="bg-white w-full md:max-w-[35rem] h-full text-black flex flex-col justify-center dark:bg-secondary-dark-2"
+    />
+    <Carousel   :items-to-show="props.itemToshow"  class="mt-10  md:px-0   md:mx-0 mx-5 " 
+           :class="{
             'md:w-[90rem]':!othersValue,
           
             
@@ -178,7 +190,10 @@ const detailPage=(id)=>{
                     </div>
 
                 </div>
-                <button :class="{' bg-white text-[#058075]':currentTheme==='light','text-white bg-[#058075]':currentTheme==='dark'}" v-if="othersValue" class="  rounded-lg border border-[#058075] px-4 py-2 md:py-0  h-[3rem]">Register Now</button>
+             <button   @click="openModal()"
+               :class="{' bg-white text-[#058075]':currentTheme==='light','text-white bg-[#058075]'
+               :currentTheme==='dark'}" v-if="othersValue" 
+               class="  rounded-lg border border-[#058075] px-4 py-2 md:py-0  h-[3rem]">Register Now</button>
 
              </div>
 
@@ -195,6 +210,8 @@ const detailPage=(id)=>{
     </template>
   </Carousel>
     
+   </div>
+   
 </template>
 
 

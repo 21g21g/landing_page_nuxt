@@ -1,0 +1,25 @@
+query Courses {
+  courses {
+    level
+    id
+    price
+    description
+    title
+    course_instructors {
+      instructor {
+        name
+        position
+        profile_picture
+      }
+    }
+    duration
+    summary
+
+    course_schedules {
+      number_of_classes
+      class_type
+
+      shift
+    }
+  }
+}

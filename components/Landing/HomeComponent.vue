@@ -49,7 +49,7 @@ const marqueeStyle = computed(() =>
 
 
 <template>
-   <div class="flex flex-row justify-between pl-6 md:pl-4 md:mr-16">
+   <div class="flex flex-row justify-between pl-6 md:pl-4 md:mr-16 min-h-screen">
       <div class="flex flex-col mt-5 md:mt-16 md:gap-7 gap-3 md:w-[43rem] w-full">
          <h3 class="font-semibold text-lg">ለሀገር ልጅ <span class="text-[#009688]">በሀገር ልጅ !</span></h3>
         <h1 :class="{' text-[#4b5563]':currentTheme==='light','text-white':currentTheme==='dark'}" class="font-roboto text-2xl font-bold dark:text-white text-gray-700 sm:text-4xl xl:text-5xl 3xl:text-6xl lg:max-w-[50rem] xl:leading-snug 3xl:leading-normal 3xl:max-w-[53rem]" data-v-c46932e4=""> Register to acquire trending <span class="underline-image text-[#009688]" data-v-c46932e4="">Marketable</span> skills</h1>

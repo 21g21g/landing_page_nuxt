@@ -124,12 +124,17 @@ const leave = (el) => {
         
              <p 
              id="job_description"
-             :class="['transition-all duration-300 text-gray-600    overflow-hidden paragraph-content',]"
+             :class="['transition-all duration-300 text-gray-600 overflow-clip  paragraph-content',]"
             :style="isExpanded ? { height: 'full', overflow: 'visible' } : { maxHeight: `${sidebarHeight}px`, overflow: 'hidden' }"
             
 
 
-              v-html="htmlContent"></p>
+              v-html="htmlContent">
+              </p>
+                <div
+           class="bg-gradient-to-t from-white to-white/0 dark:bg-gradient-to-t dark:from-secondary-dark-3 dark:to-secondary-dark-3/0 h-60 absolute bottom-12 w-full"
+         v-if="!isExpanded"
+    ></div>
 
                 
         <div v-if="showReadMoreButton" class="border-2 py-2 border-emerald-400 bg-white  flex items-center mt-2  px-2 rounded-lg w-36">

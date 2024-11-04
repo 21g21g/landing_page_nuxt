@@ -1,0 +1,82 @@
+query MyQuery(
+  $filter: courses_bool_exp
+  $is_featured: courses_media_bool_exp
+  $offset: Int
+  $limit: Int
+) {
+  courses(where: $filter, offset: $offset, limit: $limit) {
+    duration
+    description
+    has_certifications
+    id
+    # is_classfull
+    summary
+    # user_courses {
+    #   status
+    #   course_id
+    #   course_schedule_id
+    #   is_qualification_verified
+    #   is_payment_verified
+    #   course_schedule {
+    #     class_type
+    #     shift
+    #   }
+    # }
+
+    # user_courses {
+    #   course_id
+    #   is_payment_verified
+    #   course_schedule_id
+    # }
+    sections {
+      title
+      lectures {
+        title
+        start_time
+        end_time
+        is_free
+        description
+      }
+      duration
+      description
+    }
+    course_schedules {
+      class_type
+      id
+      number_of_classes
+      shift
+      shiftByShift {
+        description
+        shift
+      }
+    }
+    price
+    title
+    venue
+    courses_media(where: $is_featured) {
+      url
+      __typename
+    }
+    course_instructors {
+      instructor {
+        id
+        name
+        position
+        profile_picture
+        bio
+        __typename
+      }
+      __typename
+    }
+    course_level {
+      level
+      description
+      __typename
+    }
+  }
+  courses_aggregate(where: $filter) {
+    aggregate {
+      count(columns: id)
+    }
+  }
+}

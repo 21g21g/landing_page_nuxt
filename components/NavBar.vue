@@ -14,6 +14,8 @@ const props = defineProps({
 const emit = defineEmits(["update:lightValue"])
 const dropDown=ref(false)
 const light=ref('light')
+import {useLightStore} from "../stores/darknessAndlight"
+const lightStore=useLightStore()
 // Toggle controller for the navigation menu
 const toggleController = ref(false)
 const handleToggle = () => {
@@ -29,6 +31,8 @@ const handleClickDrop=()=>{
 const handleLight=()=>{
   light.value='light'
     emit("update:lightValue", light.value)
+
+  lightStore.changeLightColor()
     dropDown.value=false
 
  
@@ -37,6 +41,7 @@ const handleDark=()=>{
  light.value='dark'
    emit("update:lightValue", light.value)
    dropDown.value=false
+   lightStore.changeLightColor()
 
   
 }

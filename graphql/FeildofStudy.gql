@@ -1,0 +1,6 @@
+query MyQuery($filter: basic_fields_of_study_bool_exp) {
+  basic_fields_of_study(where: $filter) {
+    id
+    name
+  }
+}
