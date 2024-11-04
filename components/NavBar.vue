@@ -32,7 +32,7 @@ const handleLight=()=>{
   light.value='light'
     emit("update:lightValue", light.value)
 
-  lightStore.changeLightColor()
+  // lightStore.changeLightColor()
     dropDown.value=false
 
  
@@ -41,7 +41,7 @@ const handleDark=()=>{
  light.value='dark'
    emit("update:lightValue", light.value)
    dropDown.value=false
-   lightStore.changeLightColor()
+  //  lightStore.changeLightColor()
 
   
 }

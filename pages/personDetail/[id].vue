@@ -2,6 +2,7 @@
 import { useRoute,useRouter } from 'vue-router';
 import {CorosolData2} from "../../utils/CorosolData"
 import {MacDummy} from "../../utils/CorosolData"
+import InstructorById from "../../graphql/GetinstructorById.gql"
 import {MacDetail} from "../../utils/CorosolData"
 import {ref} from "vue"
 const route=useRoute()
@@ -23,20 +24,25 @@ router.push(`/corosolDetail/${id}`)
 
 }
 
+const {result:instResult,loading:instLoading,error:instError}=useQuery(InstructorById,{id:String(route.params.id)})
+
 </script>
 <template>
-     <div class="flex flex-col overflow-x-hidden h-auto  mt-2">
+<div>
+    <div v-if="instLoading">Loading</div>
+    <div v-else-if="instError">there is an error</div>
+         <div v-else class="flex flex-col overflow-x-hidden h-auto  mt-2">
         <div class="flex  bg-[#f9fafb] w-full px-16  gap-10 pt-10">
             <div class="flex flex-col gap-4 w-2/4 px-10  ">
                 <div class="flex flex-col rounded-md border bg-white border-slate-300 pr-2 pl-5 pt-5">
                     <div class="rounded-md w-full">
-                  <img :src="comingData.img" alt="there is no image" class="object-contain filter grayscale brightness-90   rounded-md">
+                  <img :src="instResult?.instructors_by_pk.profile_picture" alt="there is no image" class="object-contain filter grayscale brightness-90 w-[30rem]   rounded-md">
 
                     </div>
                  <div class="flex flex-row justify-between px-2 py-3">
                     <div class="flex flex-col gap-3">
-                        <h1 class="font-normal text-2xl">{{comingData.perName}}</h1>
-                        <h1 class="text-[#374151]">{{comingData.perTitle}}</h1>
+                        <h1 class="font-normal text-2xl">{{instResult?.instructors_by_pk.name}}</h1>
+                        <h1 class="text-[#374151]">{{instResult?.instructors_by_pk.position}}</h1>
                     </div>
                     <div class="flex flex-row gap-2">
                         <Icon name="skill-icons:linkedin" size="20"/>
@@ -83,7 +89,7 @@ router.push(`/corosolDetail/${id}`)
                             <div class="flex flex-col  gap-2">
                              <h1 class="text-base">{{mac.company}}</h1>
                             <p class="text-xs">{{mac.title}}</p>
-                            <p class="text-xs">{{mac.experiance}}</p>
+                            <p class="text-xs">{{instResult?.instructors_by_pk.instructor_experiences[0].total_years_of_experience}} Years of Experience</p>
                             </div>
                             
 
@@ -140,6 +146,8 @@ router.push(`/corosolDetail/${id}`)
                <div class="border border-[[#374151]] -ml-40 -mr-48 mt-8"></div>
 
     </div>
+</div>
+
 </template>
 <style scoped>
 .colors{

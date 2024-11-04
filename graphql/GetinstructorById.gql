@@ -1,0 +1,19 @@
+query getInstructorId($id: uuid!) {
+  instructors_by_pk(id: $id) {
+    bio
+    id
+    name
+    profile_picture
+    position
+    instructor_experiences {
+      entity {
+        alternate_phone_number
+        contact_person_name
+        email
+      }
+    }
+    instructor_experiences {
+      total_years_of_experience
+    }
+  }
+}
