@@ -1,4 +1,5 @@
-query Courses {
+query Courses(  $is_featured: courses_media_bool_exp
+) {
   courses {
     level
     id
@@ -20,6 +21,9 @@ query Courses {
       class_type
 
       shift
+    }
+    courses_media(where:$is_featured){
+      url
     }
   }
 }

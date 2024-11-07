@@ -4,6 +4,8 @@ import { SmallCorosol } from "../../utils/CorosolData";
 import Accordion2 from "../../components/Accordion2.vue";
 import { CorosolData1 } from "../../utils/CorosolData";
 import { items } from "../../utils/Accordion";
+import Courses from "../../graphql/Courses.gql"
+
 // import {classesData} from "../../utils/HomeData"
 import { ref, onMounted, computed, watch } from "vue";
 
@@ -17,8 +19,9 @@ const sidebarHeight = ref(0);
  const initialSIdbar=ref(0)
 const htmlContent=ref("<p class=\"ql-align-justify\"><strong>Introduction to back-end web development</strong></p><p class=\"ql-align-justify\"><br></p><p class=\"ql-align-justify\">HaHuJobs in partnership with its parent company <a href=\"https://www.minabtech.com/\" rel=\"noopener noreferrer\" target=\"_blank\">Minab IT Solutions PLC</a> is offering specialized training in software development as well as career opportunities through <a href=\"https://t.me/hahujobs\" rel=\"noopener noreferrer\" target=\"_blank\">HaHuJobs</a> job matching platforms. Accordingly, software development experts will offer a three-month extended training outlined as per the below-stated lesson plan. The plan offers insights on how the training will be offered, what components it features, and in what specific subject areas it will focus. The training aims to provide trainees with guidelines and insights on software engineering and/or related field-specialized skills. It also offers learning methods and best practices under each training category.</p><p class=\"ql-align-justify\"><br></p><p class=\"ql-align-justify\">The training features reading and implementation assessments and exercises submissions from trainees to offer feedback for improvement or qualification. Assignments are given to trainees at the middle and end of each training category. This specialized training will be administered in both lectured and hands-on lesson practice format based on instruction from trainers. Each training class will have two trainers, one who leads the lecture and the other an assistant to help and assist in technical examples. The training will have a total of 24 classes each with a 2-hour duration and classes allocated for each module of the training.&nbsp;</p><p class=\"ql-align-justify\"><br></p><p class=\"ql-align-justify\"><strong>Trinee Qualification and Prerequisites</strong></p><p class=\"ql-align-justify\"><br></p><p class=\"ql-align-justify\">To qualify for this training, one needs to pass through the main qualifiers, a working understanding of specific subject matters in software engineering. As a primary qualifier a basic understanding of web programming, web development concepts, and programming fundamentals are essential. Each registrant will be evaluated against such measures before enrolling in a training program.</p><p class=\"ql-align-justify\"><br></p><p class=\"ql-align-justify\">Trainees should have an understanding of basic software engineering concepts which are expected to be administered through various education materials is necessary. Among others below is a list of courses and subject matter understandings that trainees enrolling for these specialized trainings are expected to have: -</p><ul><li class=\"ql-align-justify\">Introduction to Programming</li><li class=\"ql-align-justify\">Web programming, especially CSS, HTML, and JavaScript</li><li class=\"ql-align-justify\">Mobile programming (recommended not essential)</li><li class=\"ql-align-justify\">Advanced database management</li><li class=\"ql-align-justify\">Basic understanding of GIT</li><li class=\"ql-align-justify\">Basics understanding of Linux OS and environment</li><li class=\"ql-align-justify\">Basic understanding of software architecture&nbsp;</li></ul><p class=\"ql-align-justify\"><br></p><p class=\"ql-align-justify\"><strong>Front-end web development</strong></p><p class=\"ql-align-justify\"><br></p><p class=\"ql-align-justify\">Front-end web development training is aimed at providing the technical skills required to build platform back-end structures using <a href=\"https://graphql.org/\" rel=\"noopener noreferrer\" target=\"_blank\">GraphQL</a>. This training features a recap on database management, in-depth training on the <a href=\"https://hasura.io/\" rel=\"noopener noreferrer\" target=\"_blank\">Hasura GraphQL</a> server, and setting up a back-end dockerize environment and logic implementation using <a href=\"https://go.dev/\" rel=\"noopener noreferrer\" target=\"_blank\">Golang</a>.</p><ul><li class=\"ql-align-justify\"><strong><em>Database management recap</em></strong>: - this module will help trainees revisit database management concepts in query language, relations, and schema definitions which are essential for the modules to follow.</li><li class=\"ql-align-justify\"><strong><em>Back-end design</em></strong>: - this training module will focus on offering trainees skills on how to translate client-approved mockups and wireframes to a backend structure using <a href=\"https://hasura.io/\" rel=\"noopener noreferrer\" target=\"_blank\">Hasura GraphQL</a>. </li><li class=\"ql-align-justify\"><strong><em>GraphQL</em></strong>: - this module will introduce and help acquire technical skills on how to implement <a href=\"https://graphql.org/\" rel=\"noopener noreferrer\" target=\"_blank\">GraphQL</a> and what it is in general.</li><li class=\"ql-align-justify\"><strong><em>Setting up a back-end deployment</em></strong>: - this module is intended to enable trainees to acquire a working knowledge of how to design and set up the back end of a project using Goland and <a href=\"https://www.docker.com/\" rel=\"noopener noreferrer\" target=\"_blank\">Docker</a> for environment configurations.</li><li class=\"ql-align-justify\"><strong><em>Back-end logic model</em></strong>: - this module will introduce trainees to how best to model and implement back-end logic using <a href=\"https://go.dev/\" rel=\"noopener noreferrer\" target=\"_blank\">Golang </a>using the <a href=\"https://expressjs.com/\" rel=\"noopener noreferrer\" target=\"_blank\">Express.Js</a> framework.&nbsp;</li></ul>",
 )
+const {result:courseResult,loading:courseLoading,error:courseError}=useQuery(Courses)
 
-const comingData = CorosolData1.find(coro => coro.id === parseInt(route.params.id));
+const comingData = CorosolData1.find(coro => coro.id === 1);
 
 const windowWidth = ref(null);
 const updateWindowWidth = () => {
@@ -108,39 +111,32 @@ const leave = (el) => {
 </script>
 
 <template>
-  <div class="flex flex-col h-auto mt-5">
-    <div class="bg-white w-full flex flex-row gap-4 px-12 py-4">
-      <div class="w-2/3 pr-4"> 
-      <div
-            class="absolute top-0 left-0 flex bg-Primary-600 bg-opacity-70 p-2 space-x-2 rounded-tl-xl rounded-br-lg"
-          >
-            <Icon class="text-white text" name="ph:certificate-fill" />
-            <p class="text-white font-poppins">
-            certificate_offered
-            </p>
-          </div>
-        <img :src="comingData.img" alt="Course Image" class="contenimage px-4 rounded-3xl object-cover">
-        <h1 class="text-2xl text-gray-600 mt-7">About the course</h1>
-        
+  <div class="flex flex-col h-auto mt-5  overflow-x-hidden">
+    <div class="bg-white w-full flex flex-row gap-4 px-12 py-4 overflow-x-hidden">
+      <div class="w-2/3 pr-4 overflow-x-hidden "> 
+     
+        <img :src="comingData.img" alt="Course Image" class="contenimage px-4 max-w-full rounded-3xl object-cover">
+        <!-- <h1 class="text-2xl text-gray-600 mt-7">About the course</h1> -->
+             
              <p 
              id="job_description"
-             :class="['transition-all duration-300 text-gray-600 overflow-clip  paragraph-content',]"
-            :style="isExpanded ? { height: 'full', overflow: 'visible' } : { maxHeight: `${sidebarHeight}px`, overflow: 'hidden' }"
+             :class="['transition-all duration-1000 text-gray-600 overflow-x-hidden  paragraph-content']"
+            :style="isExpanded ? { maxHeight: '1200px' } : { maxHeight: `${sidebarHeight}px`, overflow: 'hidden' }"
             
 
 
               v-html="htmlContent">
               </p>
-                <div
-           class="bg-gradient-to-t from-white to-white/0 dark:bg-gradient-to-t dark:from-secondary-dark-3 dark:to-secondary-dark-3/0 h-60 absolute bottom-12 w-full"
-         v-if="!isExpanded"
-    ></div>
+               <!-- <div
+       class="bg-gradient-to-t from-white to-slate-400 dark:bg-gradient-to-t dark:from-secondary-dark-3 dark:to-secondary-dark-3/0 h-60 absolute bottom-12 w-full"
+      v-if="!isExpanded"
+       ></div> -->
 
                 
-        <div v-if="showReadMoreButton" class="border-2 py-2 border-emerald-400 bg-white  flex items-center mt-2  px-2 rounded-lg w-36">
+        <div v-if="showReadMoreButton" class="border-2 py-2 transition-all duration-1000  border-emerald-400 bg-white  flex items-center mt-2  px-2 rounded-lg w-36">
           <Icon name="hugeicons:arrow-down-03"  style="color:green"/>
       
-      <button class="text-green-600  px-1" v-if="showReadMoreButton" @click="toggleExpanded">{{ isExpanded ? "Show Less" : "Read More" }}</button>
+      <button class="text-green-600  transition-all duration-1000 px-1" v-if="showReadMoreButton" @click="toggleExpanded">{{ isExpanded ? "Show Less" : "Read More" }}</button>
         </div>
         
         
@@ -315,7 +311,7 @@ const leave = (el) => {
        
           <!-- </ul> -->
           </div>
-       
+
         <div class="border border-slate-200 w-full py-2 mt-6 px-4">
           
          <DynamicAcc  @accordion-height="updateSidebarHeight" @accordion-decrease="decreseSidebar"/>
@@ -326,11 +322,14 @@ const leave = (el) => {
     </div>
     <div class="flex flex-col mt-6 px-5">
         <h1 class="text-2xl">Similar courses</h1>
-     <CorosolComponent  :items="CorosolData1" :showPrice="true" :showIcon="true"  :showPersonName="true" :othersValue="true" :itemToshow="itemToshow"/>
+     <!-- <CorosolComponent  :items="CorosolData1" :showPrice="true" :showIcon="true"  :showPersonName="true" :othersValue="true" :itemToshow="itemToshow"/> -->
+      <p v-if="courseLoading">Loading...</p>
+          <p class="text-red-500" v-else-if="courseError">There is something error</p>
+           <CorosolComponent v-else  :currentTheme="currentTheme" :items="courseResult?.courses" :showPrice="true" :showIcon="true"  :showPersonName="true" :othersValue="true" :itemToshow="itemToshow"/>
 
 
     </div>
-          <div class="border border-[[#374151]] -ml-40 -mr-48 mt-8"></div>
+   <!-- <div class="border border-[[#374151]] -ml-28 -mr-48 mt-8"></div> -->
 
      
 </div>

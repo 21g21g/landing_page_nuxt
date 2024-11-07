@@ -1,0 +1,10 @@
+query SearchFields($search: String!, $limit: Int!, $offset: Int!) {
+  search_fields_of_study(
+    where: { name: { _ilike: $search } }  
+    limit: $limit
+    offset: $offset
+  ) {
+    id
+    name
+  }
+}

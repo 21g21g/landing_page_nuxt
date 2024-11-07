@@ -1,6 +1,7 @@
 <script setup>
 import list from "@/composables/query/query.js";
-import FieldOfStudy from "@/graphql/query/shared/fieldOfStudy.gql";
+// import FieldOfStudy from "@/graphql/query/shared/fieldOfStudy.gql";
+import FeildofStudy from "../../graphql/FeildofStudy.gql"
 import { useUserStore } from "@/stores/user.js";
 const userStore = useUserStore();
 const client = computed(() => {
@@ -53,7 +54,7 @@ const selected = ref("");
 const helper = ref({});
 const search = ref();
 const limit = ref(100);
-// helper.value.field_id = "HBrPIE6Hk_lzRweejNKxb";
+helper.value.field_id = "HBrPIE6Hk_lzRweejNKxb";
 const filter = computed(() => {
   let default_filter = {};
 
@@ -66,9 +67,11 @@ const filter = computed(() => {
   // }
   return default_filter;
 });
+const {result:fielddResult,loading:fieldloading,error:fielderror,refetch:fieldrefetch}=useQuery(FeildofStudy)
 
-const { onResult, loading, onerror } = list(
-  FieldOfStudy,
+
+const { onResult, loading, onerror } = useQuery(
+  FeildofStudy,
   { filter, clientId: client },
   "user"
 );

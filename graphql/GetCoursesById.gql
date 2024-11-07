@@ -1,0 +1,31 @@
+query ($filter: uuid!) {
+  items: courses_by_pk(id: $filter) {
+    id
+    courses_media {
+      is_featured
+      is_thumbnail
+      url
+    }
+    title
+    duration
+    description
+    course_schedules {
+      shift
+      class_type
+      number_of_classes
+    }
+    summary
+    course_level {
+      level
+    }
+    price
+    course_instructors {
+      instructor {
+        id
+        name
+        position
+        profile_picture
+      }
+    }
+  }
+}

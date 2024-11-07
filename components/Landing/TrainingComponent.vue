@@ -3,6 +3,8 @@ import {ref,computed} from "vue"
 import {CorosolData1} from "../../utils/CorosolData"
 const arrowController=ref(false)
 import AllCourses from "../../graphql/AllCourses.gql"
+import Courses from "../../graphql/Courses.gql"
+import {useRouter} from "vue-router"
 console.log(AllCourses);
 console.log(CorosolData1)
 const windowWidth = ref(null);
@@ -10,10 +12,12 @@ const props=defineProps({
   currentTheme:{
     type:String
   }
-})          
+})   
+const router=useRouter()       
 //  <CorosolComponent  :currentTheme="currentTheme" :items="courseResult?.courses" :showPrice="true" :showIcon="true"  :showPersonName="true" :othersValue="true" :itemToshow="itemToshow"/>
 
 // when onhover make arrow margin left
+const {result:courseResult,loading:courseLoading,error:courseError}=useQuery(Courses)
 const handleMouseover = () => {
   arrowController.value = true
 }
@@ -25,6 +29,9 @@ const updateWindowWidth = () => {
   windowWidth.value = window.innerWidth;
 };
 
+const gotoCourse=()=>{
+   router.push("/search")
+}
 
 onMounted(() => {
     updateWindowWidth()
@@ -34,7 +41,7 @@ const itemToshow = computed(() => {
   return windowWidth.value >= 768 ? 3 : 1;
 });
 
-const {result:courseResult,loading:courseLoading,error:courseError}=useQuery(AllCourses)
+// const {result:courseResult,loading:courseLoading,error:courseError}=useQuery(AllCourses)
 </script>
 <template>
     <div class="mt-14">
@@ -50,6 +57,7 @@ const {result:courseResult,loading:courseLoading,error:courseError}=useQuery(All
            <button
           @mouseover="handleMouseover"
           @mouseout="handleMouseout"  
+          @click="gotoCourse"
           class="bg-[#009688] text-xl font-semibold rounded-lg text-white px-2  h-[2rem]  w-[10rem] mt-24">Browse All 
           
           <Icon name="maki:arrow"            
@@ -61,7 +69,9 @@ const {result:courseResult,loading:courseLoading,error:courseError}=useQuery(All
         <!-- <div v-if="courseLoading">Loading...</div>
         <div v-else-if="courseError">Error is Occured</div>
         <div v-else> -->
-           <CorosolComponent  :currentTheme="currentTheme" :items="CorosolData1" :showPrice="true" :showIcon="true"  :showPersonName="true" :othersValue="true" :itemToshow="itemToshow"/>
+          <p v-if="courseLoading">Loading...</p>
+          <p class="text-red-500" v-else-if="courseError">There is something error</p>
+           <CorosolComponent v-else  :currentTheme="currentTheme" :items="courseResult?.courses" :showPrice="true" :showIcon="true"  :showPersonName="true" :othersValue="true" :itemToshow="itemToshow"/>
             <!-- <CorosolComponent  :currentTheme="currentTheme" :items="courseResult?.courses" :showPrice="true" :showIcon="true"  :showPersonName="true" :othersValue="true" :itemToshow="itemToshow"/> -->
 
         <!-- </div> -->

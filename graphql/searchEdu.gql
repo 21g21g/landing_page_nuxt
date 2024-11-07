@@ -1,0 +1,6 @@
+query MyQuery($filter: basic_education_levels_bool_exp) {
+  basic_education_levels(order_by: { rank: desc }, where: $filter) {
+    name
+    id
+  }
+}

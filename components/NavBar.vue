@@ -50,7 +50,7 @@ const handleDark=()=>{
 
 <template>
   <div>
-    <header class="flex flex-row gap-[25rem]  py-6 h-[80px] px-10 items-center relative z-10">
+    <header class="flex flex-row gap-[25rem]  py-6 h-[80px] overflow-x-hidden px-10 items-center relative z-10">
       <!-- Logo Section -->
        <NuxtLink 
          @click="hadleT" 

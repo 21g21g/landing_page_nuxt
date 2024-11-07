@@ -1,8 +1,8 @@
 <script setup>
 // import { ref, computed,  onBeforeMount, toRefs } from "vue";
-// import { useDebounceFn } from "@vueuse/core";
+import { useDebounceFn } from "@vueuse/core";
 import { useField } from "vee-validate";
-// import { onClickOutside } from "@vueuse/core";
+import { onClickOutside } from "@vueuse/core";
 
 const emit = defineEmits([
   "update:modelValue",
@@ -178,20 +178,21 @@ const open = () => {
 
   input.value.focus();
 };
-const queryList = () => {
-  emit("search", search.value);
+const queryList = (event) => {
+  emit("search", event.target.value);
+  console.log(event.target.value);
 };
 
-const clear = () => {
-  search.value = undefined;
-  inputValue.value = "";
-  selected.value = "";
-  show.value = false;
-  emit("update:modelValue", undefined);
-  emit("update:selected", undefined);
-  emit("onSelectionFound", undefined);
-  emit("search", "");
-};
+// const clear = () => {
+//   search.value = undefined;
+//   inputValue.value = "";
+//   selected.value = "";
+//   show.value = false;
+//   emit("update:modelValue", undefined);
+//   emit("update:selected", undefined);
+//   emit("onSelectionFound", undefined);
+//   emit("search", "");
+// };
 
 onClickOutside(list_select, (e) => (show.value = false));
 </script>
@@ -255,7 +256,7 @@ onClickOutside(list_select, (e) => (show.value = false));
       <li class="flex items-center justify-center px-2">
         <input
           ref="input"
-          @input="queryList"
+          @input="queryList($event)"
           v-model="search"
           @blur="outside"
           autocomplete="off"
@@ -266,7 +267,7 @@ onClickOutside(list_select, (e) => (show.value = false));
           :placeholder="props.searchPlaceholder || 'Search'"
         />
       </li>
-      <li class="h-1">
+      <li  class="h-1">
         <HLoadingProgress
           v-if="loading"
           class="w-full rounded-xl"

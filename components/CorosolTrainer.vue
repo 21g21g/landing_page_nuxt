@@ -94,12 +94,17 @@ const openModal=()=>{
            >
             <div :class="{' border-[rgb(24,160,149)] rounded-xl':borderController===slide.id,
               'bg-[#f3f4f6]':currentTheme==='light','bg-[#1b2637]':currentTheme==='dark',
-              'h-auto  md:mr-5 border rounded-2xl':!othersValue,'mr-1':props.itemToshow===1
+              'h-auto w-[60rem]  md:mr-5 border rounded-2xl':!othersValue,'mr-1':props.itemToshow===1
            
        
        
-        }"  @mousemove="handleMoseOver(slide.id)" @mouseout="handlemouseLeave" class="flex flex-col text-start md:gap-3 cursor-pointer rounded-xl"  @click="detailPage(slide.id)">   
-          <img :src="slide?.profile_picture" alt="there is no image" class="h-50  object-cover " :class="{'filter grayscale brightness-90 object-cover rounded-xl':!othersValue}">
+        }"  @mousemove="handleMoseOver(slide.id)" @mouseout="handlemouseLeave" class="flex flex-col text-start md:gap-3 cursor-pointer rounded-xl"  @click="detailPage(slide.id)">  
+             <div class="rounded-md w-full">
+                  <!-- <img :src="instResult?.instructors_by_pk.profile_picture" alt="there is no image" class="object-contain filter grayscale brightness-90 w-[30rem]   rounded-md"> -->
+                            <img :src="slide?.profile_picture" alt="there is no image" class="object-cover  w-[60rem]" :class="{'filter grayscale brightness-90 object-cover rounded-xl':!othersValue}">
+
+
+                    </div> 
           <h1 class="md:pl-5 pl-3 text-lg md:text-sm" >{{slide.position}}</h1>
           <h1 :class="{' text-[#4b5563]':currentTheme==='light','text-white':currentTheme==='dark'}"  class="md:pl-5 pl-3 md:font-semibold font-normal  md:text-xl text-lg">{{slide.name}}</h1>
           <p :class="{'mt-1 leading-7 text-base md:line-clamp-3 line-clamp-none':!othersValue,' text-[#4b5563]':currentTheme==='light','text-white':currentTheme==='dark'}" class="md:pl-5 pl-3  md:pr-3 pr-1  line-clamp-3 ">{{slide.bio}}</p>

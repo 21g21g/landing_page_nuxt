@@ -17,6 +17,7 @@
     "@pinia/nuxt": "^0.6.1",
     "@vee-validate/nuxt": "^4.14.6",
     "@vue/apollo-composable": "^4.2.1",
+    "@vueuse/core": "^11.2.0",
     "aos": "^2.3.4",
     "date-fns": "^4.1.0",
     "floating-vue": "^5.2.2",

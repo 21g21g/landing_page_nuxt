@@ -19,7 +19,7 @@ const setactiveLinkLeave=()=>{
 }
 </script>
 <template>
-    <footer :class="{'bg-white':currentTheme==='light','bg-[#1b2637]':currentTheme==='dark'}" class="  px-24 pt-16  flex flex-col">
+    <footer :class="{'bg-white':currentTheme==='light','bg-[#1b2637]':currentTheme==='dark'}" class="  px-24 pt-16 overflow-x-hidden  flex flex-col">
        <div class="flex md:flex-row flex-col">
         <div class="flex flex-col gap-4 ml-24 mr-24 md:ml-0 md:mr-0">
             <p :class="{'text-[#374151]':currenTheme==='light','text-white':currentTheme==='dark'}">Powered by</p>

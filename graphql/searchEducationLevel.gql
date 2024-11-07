@@ -1,0 +1,6 @@
+query ($filter: search_education_levels_args) {
+  items: search_education_levels {
+    id
+    name
+  }
+}

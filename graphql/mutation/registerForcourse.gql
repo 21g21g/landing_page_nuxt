@@ -1,0 +1,28 @@
+mutation Register(
+  $email: String
+  $field_of_study: String
+  $first_name: String
+  $last_name: String
+  $max_education_level: String
+  $years_of_experiance: Int
+) {
+  insert_users(
+    objects: {
+      email: $email
+      field_of_study: $field_of_study
+      first_name: $first_name
+      last_name: $last_name
+      max_education_level: $max_education_level
+      years_of_experiance: $years_of_experiance
+    }
+  ) {
+    returning {
+      email
+      first_name
+      last_name
+      field_of_study
+      max_education_level
+      years_of_experiance
+    }
+  }
+}

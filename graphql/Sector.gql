@@ -1,7 +1,5 @@
-
-
-query Sectors($fillter:basic_sectors_bool_exp){
-  basic_sectors(where:$fillter){
+query ($filter: basic_sectors_bool_exp) {
+  basic_sectors( where:$filter ) {
     id
     name
   }

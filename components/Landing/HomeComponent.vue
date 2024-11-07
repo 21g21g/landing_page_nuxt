@@ -61,7 +61,7 @@ const marqueeStyle = computed(() =>
          </NuxtLink>
          <p :class="{'text-[#374151]': currentTheme === 'light', 'text-white': currentTheme === 'dark'}" class="mt-3">In partnership with:</p>
          
-          <Vue3Marquee
+              <Vue3Marquee
                 :clone="true"
                 :duration="marqueeStyle.duration"
                 :pauseOnHover="marqueeStyle.pauseOnHover"

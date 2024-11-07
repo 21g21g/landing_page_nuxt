@@ -1,17 +1,6 @@
 <script setup>
-// import list from "@/composables/query/query.js";
-// import education from "@/graphql/query/shared/education.gql";
-// import education from "@/graphql/query/search_edu_level.gql";
-// import { useUserStore } from "@/stores/user.js";
-// const userStore = useUserStore();
-// const client = computed(() => {
-//   if (userStore.PrimaryToken) {
-//     return "authClient";
-//   } else {
-//     return "Anonymous";
-//   }
-// });
-import Experiance from "../../graphql/Experiance.gql"
+
+import searched from "../../graphql/searchEdu.gql"
 const props = defineProps({
   modelValue: {
     type: [Object, Function, String],
@@ -65,11 +54,9 @@ const filter = computed(() => {
   return defaultFilter;
 });
 
-const { onResult, loading, onerror } = list(
-  education,
-  { filter, clientId: client },
-  "user"
-);
+const { onResult, loading, onerror } = useQuery(
+  searched,
+  { filter});
 onResult(({ data }) => {
   if (data) {
     items.value = data.items;

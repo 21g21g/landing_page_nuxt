@@ -92,8 +92,18 @@ const open = computed({
                 props.mainClass,
               ]"
             >
-              <div
-                class="absolute right-0 justify-between w-full px-5 lg:px-9 lg:pt-9 sm:flex"
+            <!-- <div class="absolute p-5 ">
+                <DialogTitle
+                 
+                  class="text-lg font-semibold leading-6 text-slate-950 "
+                >
+                  <slot name="Heading" />
+                  
+                </DialogTitle>
+               
+            </div> -->
+             <div
+                class="absolute -top-6 left-40  justify-between w-full px-5 lg:px-9 lg:pt-9 sm:flex"
               >
                 <DialogTitle
                   as="h3"
@@ -101,18 +111,8 @@ const open = computed({
                   ><slot name="Heading" />
                 </DialogTitle>
               </div>
-              <button
-                v-if="hasCloseIcon"
-                type="button"
-                class="absolute lg:w-10 lg:h-10 text-gray-400 rounded-md right-6 shrink-0 hover:text-gray-500 focus:outline-none focus:ring-1 focus:ring-gray-100 hover:border"
-                @click="open = false"
-              >
-                <span class="sr-only">Close</span>
-                <Icon
-                  name="ion:close-outline"
-                  class="text-2xl lg:text text-gray-900 dark:text-white"
-                />
-              </button>
+             
+             
               <slot name="content" />
             </DialogPanel>
           </TransitionChild>

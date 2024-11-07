@@ -1,0 +1,6 @@
+query ($filter: search_fields_of_study_args, $limit: Int, $offset: Int) {
+  items: search_fields_of_study(args: $filter, limit: $limit, offset: $offset) {
+    id
+    name
+  }
+}
